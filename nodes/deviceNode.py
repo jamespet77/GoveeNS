@@ -21,8 +21,8 @@ It's just a node for storing data, no actions.
 class Light(udi_interface.Node):
     id = 'child'
     drivers = [
-            {'driver': 'ST', 'value': 1, 'uom': 25},
-            {'driver': 'GV0', 'value': 0, 'uom': 25}
+            {'driver': 'ST', 'value': 0, 'uom': 25},
+            {'driver': 'GV0', 'value': 1, 'uom': 25}
             ]
 
     def __init__(self, polyglot, parent, address, name, api_address, model):
@@ -49,10 +49,10 @@ class Light(udi_interface.Node):
             return
         state = state['data']
 
-        deviceState = state['properties'][0]['online']
-        self.setDriver('ST', int(deviceState != 'false'), True, True)
         powerState = state['properties'][1]['powerState']
-        self.setDriver('GV0', int(powerState == 'on'), True, True)
+        self.setDriver('ST', int(powerState == 'on'), True, True)
+        deviceState = state['properties'][0]['online']
+        self.setDriver('GV0', int(deviceState != 'false'), True, True)
 
     def setState(self, state):
         rest.put('devices/control', {
@@ -70,4 +70,4 @@ class Light(udi_interface.Node):
     def off(self, command):
         self.setState('off')
     
-    commands = {'DFON': on, 'DFOF': off}
+    commands = {'DON': on, 'DOF': off}

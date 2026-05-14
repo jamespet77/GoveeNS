@@ -76,6 +76,6 @@ class Controller(udi_interface.Node):
         nodes = self.poly.getNodes()
         for node in nodes:
             if node != 'controller':
-                nodes[node].setDriver('ST', 0, True, True)
+                nodes[node].setDriver('GV0', 0, True, True)
 
         self.poly.stop()

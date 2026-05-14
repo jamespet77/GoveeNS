@@ -4,10 +4,10 @@ ST-ctl-ST-NAME = NodeServer Online
 
 ND-child-NAME = Govee Device
 ND-child-ICON = Lamp
-ST-str-ST-NAME = Sensor Active
-ST-str-GV0-NAME = State
-CMD-str-DFON-NAME = On
-CMD-str-DFOF-NAME = Off
+ST-str-ST-NAME = State
+ST-str-GV0-NAME = Sensor Active
+CMD-str-DON-NAME = On
+CMD-str-DOF-NAME = Off
 
 ONOFF-0 = Off
 ONOFF-1 = On
