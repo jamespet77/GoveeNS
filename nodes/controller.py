@@ -42,7 +42,8 @@ class Controller(udi_interface.Node):
         polyglot.subscribe(self.poly.POLL, self.poll)
 
     def node_queue(self, data):
-        self.n_queue.append(data['address'])
+        if data['address'] not in self.n_queue:
+            self.n_queue.append(data['address'])
 
     def wait_for_node_done(self):
         while len(self.n_queue) == 0:
@@ -51,11 +52,18 @@ class Controller(udi_interface.Node):
 
 
     def createDevices(self):
-        devices = rest.get('devices')['data']['devices']
+        self.n_queue = []
+        response = rest.get('devices')
+        if response is None or 'data' not in response or 'devices' not in response['data']:
+            LOGGER.error("Failed to get devices from Govee API")
+            return
+
+        devices = response['data']['devices']
 
         for device in devices:
             LOGGER.info(f'Adding device {device.__str__()}')
-            address = device['device'].lower().replace(':', '')
+            # ISY/IoX addresses are limited to 14 characters
+            address = device['device'].lower().replace(':', '')[-14:]
 
             node = deviceNode.Light(self.poly, self.address, address, device['deviceName'], device['device'], device['model'])
 

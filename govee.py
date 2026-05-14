@@ -19,9 +19,11 @@ LOGGER = udi_interface.LOGGER
 Custom = udi_interface.Custom
 
 n_queue = []
+mainNode = None
 
 def node_queue(data):
-    n_queue.append(data['address'])
+    if data['address'] not in n_queue:
+        n_queue.append(data['address'])
 
 
 def wait_for_node_done():
@@ -41,7 +43,9 @@ if __name__ == "__main__":
 
         Parameters = Custom(polyglot, 'customparams')
         
+        mainNode = None
         def parameterHandler(params):
+            global mainNode
             Parameters.load(params)
 
             if 'API Key' in Parameters:
@@ -51,11 +55,12 @@ if __name__ == "__main__":
                     polyglot.Notices.clear()
                     rest.init(key)
 
-                    mainNode = controller.Controller(polyglot, 'controller', 'controller', 'Govee Controller')
-
-                    polyglot.addNode(mainNode)
-                    wait_for_node_done()
-                    mainNode.createDevices()
+                    if mainNode is None:
+                        mainNode = controller.Controller(polyglot, 'controller', 'controller', 'Govee Controller')
+                        n_queue.clear()
+                        polyglot.addNode(mainNode)
+                        wait_for_node_done()
+                        mainNode.createDevices()
                 else:
                     # No key provided
                     polyglot.Notices['API'] = 'Missing API Key'
