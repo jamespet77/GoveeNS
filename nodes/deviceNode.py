@@ -19,7 +19,7 @@ This is the sensor node class.
 It's just a node for storing data, no actions.
 '''
 class Light(udi_interface.Node):
-    id = 'child'
+    id = 'goveeDevice'
     drivers = [
             {'driver': 'ST', 'value': 0, 'uom': 25},
             {'driver': 'GV0', 'value': 1, 'uom': 25}

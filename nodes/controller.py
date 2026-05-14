@@ -53,16 +53,14 @@ class Controller(udi_interface.Node):
     def createDevices(self):
         devices = rest.get('devices')['data']['devices']
 
-        num = 0
         for device in devices:
-            address = f'child_{num}'
+            LOGGER.info(f'Adding device {device.__str__()}')
+            address = device['device'].lower().replace(':', '')
 
             node = deviceNode.Light(self.poly, self.address, address, device['deviceName'], device['device'], device['model'])
 
             self.poly.addNode(node)
             self.wait_for_node_done()
-
-            num += 1
 
 
     def poll(self, pollType):

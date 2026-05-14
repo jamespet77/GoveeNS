@@ -5,7 +5,7 @@
 	  </sts>
   </nodeDef>
 
-  <nodeDef id="child" nodeType="139" nls="str">
+  <nodeDef id="goveeDevice" nodeType="139" nls="goveeDevice">
     <sts>
       <st id="ST" editor="bool" />
       <st id="GV0" editor="bool" />
