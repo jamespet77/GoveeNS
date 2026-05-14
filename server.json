@@ -1,23 +1,23 @@
 {
-    "name": "SensorPushNS",
-    "docs": "https://github.com/AZTurtle/SensorPushNS/README.md",
+    "name": "GoveeNS",
+    "docs": "https://github.com/jamespet77/GoveeNS/README.md",
     "type": "python3",
-    "executable": "sensorpush.py",
+    "executable": "govee.py",
     "install": "install.sh",
-    "description": "Node server for integration with SensorPush devices",
+    "description": "Node server for integration with Govee devices",
     "notice": "",
     "shortPoll": "60",
     "longPoll": "3600",
-	"logLevel": "WARNING",
-    "profile_version": "0.1.2",
+    "logLevel": "WARNING",
+    "profile_version": "0.0.1",
     "credits": [
     	{
-    		"title": "SensorPushNS",
-    		"author": "James Bennett",
-    		"version": "0.1.2",
-    		"date": "December 26, 2023",
-    		"source": "https://github.com/AZTurtle/GoveeNS",
-			"license": "https://github.com/AZTurtle/GoveeNS/LICENSE"
+    		"title": "GoveeNS",
+    		"author": "James Peterson",
+    		"version": "0.0.1",
+    		"date": "May 14, 2026",
+    		"source": "https://github.com/jamespet77/GoveeNS",
+			"license": "https://github.com/jamespet77/GoveeNS/LICENSE"
 		}
 	]
 }
