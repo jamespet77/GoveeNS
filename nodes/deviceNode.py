@@ -63,6 +63,7 @@ class Light(udi_interface.Node):
                 'value': state
             }
         })
+        self.updateState()
 
     def on(self, command):
         self.setState('on')
